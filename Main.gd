@@ -6,7 +6,6 @@ var score
 
 func _ready():
 	randomize()
-	start_game()
 	
 
 func _on_Player_hit():
@@ -14,6 +13,7 @@ func _on_Player_hit():
 
 
 func game_over():
+	$HUD.show_game_over()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 
@@ -49,8 +49,15 @@ func spawn_mob():
 
 func _on_ScoreTimer_timeout():
 	score += 1
+	$HUD.update_score(score)
 
 
 func _on_StartTimer_timeout():
 	$ScoreTimer.start()
 	$MobTimer.start()
+
+
+func _on_CanvasLayer_start_game():
+	$HUD.update_score(0)
+	$HUD.show_message("Get Ready")
+	start_game()
