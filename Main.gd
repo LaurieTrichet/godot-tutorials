@@ -22,6 +22,7 @@ func start_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	get_tree().call_group("mobs", "queue_free")
 
 
 func _on_MobTimer_timeout():
