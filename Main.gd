@@ -7,22 +7,22 @@ var score
 func _ready():
 	randomize()
 	
-
-func _on_Player_hit():
-	game_over()
-
-
-func game_over():
-	$HUD.show_game_over()
-	$ScoreTimer.stop()
-	$MobTimer.stop()
-
-
 func start_game():
+	$BackgroundMusic.play()
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	get_tree().call_group("mobs", "queue_free")
+	
+func _on_Player_hit():
+	game_over()
+
+func game_over():
+	$BackgroundMusic.stop()
+	$DeathSound.play()
+	$HUD.show_game_over()
+	$ScoreTimer.stop()
+	$MobTimer.stop()
 
 
 func _on_MobTimer_timeout():
