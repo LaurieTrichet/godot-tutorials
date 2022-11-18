@@ -23,6 +23,12 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 	
 	
+func toggle_score_visibility(visibility):
+	if visibility == 1:
+		$ScoreLabel.show()
+	else:
+		$ScoreLabel.hide()
+	
 func _on_MessageTimer_timeout():
 	$Message.hide()
 

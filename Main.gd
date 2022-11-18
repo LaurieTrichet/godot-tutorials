@@ -5,11 +5,14 @@ var score
 
 
 func _ready():
+	$HUD.update_score(0)
+	$HUD.toggle_score_visibility(0)
 	randomize()
 	
 func start_game():
 	$BackgroundMusic.play()
 	score = 0
+	$HUD.toggle_score_visibility(1)
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	get_tree().call_group("mobs", "queue_free")
